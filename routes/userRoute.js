@@ -9,6 +9,7 @@ import {
   registerUser,
   loginUser,
   logOutUser,
+  refreshAccessToken,
 } from "../controllers/userController.js";
 
 //Route defines
@@ -21,7 +22,8 @@ router.route("/register").post(
 );
 router.route("/login").post(loginUser);
 
-//Secured routes
+//secured route
 router.route("/logout").post(veryfyJWT, logOutUser);
+router.route("/refreshAccessToken").post(refreshAccessToken);
 
 export default router;
