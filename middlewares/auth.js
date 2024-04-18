@@ -3,7 +3,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import JWT from "jsonwebtoken";
 import { User } from "../models/user.js";
 
-export const veryfyJWT = asyncHandler(async (req, res, next) => {
+export const verifyJWT = asyncHandler(async (req, res, next) => {
   const token =
     req.cookies?.accessToken ||
     req.header("Authorization")?.replace("Bearer ", "");
@@ -19,7 +19,7 @@ export const veryfyJWT = asyncHandler(async (req, res, next) => {
   );
 
   if (!user) {
-    throw new ApiError(401, "Invalid Access token");
+    throw new ApiError(401, "Access token expired");
   }
   req.user = user;
   next();
